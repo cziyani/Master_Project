@@ -1,4 +1,4 @@
-#########explore distance pairs of co-active enhancers
+######### Explore distance between pairs of co-active enhancers
 
 library(data.table)
 library(ggplot2)
