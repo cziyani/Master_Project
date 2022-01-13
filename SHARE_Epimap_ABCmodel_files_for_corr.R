@@ -1,4 +1,4 @@
-
+####################### create simplified files to compare SHARE-seq with other datasets
 
 library(data.table)
 library(ggplot2)
