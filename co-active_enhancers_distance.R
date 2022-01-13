@@ -68,9 +68,6 @@ df <- ddply(dt2,
             lab = length(bins))
 
 
-cw_summary <- dt2 %>% 
-  group_by(bins) %>% 
-  tally()
 
 colnames(dt2)[6] = "Distance"
 
