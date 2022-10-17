@@ -1,4 +1,4 @@
-############################ SHARE-seq / EpiMap / ABCmodel correlation 
+# Script to calculate the correlation between our approach SHARE-seq coex with other studies approch : EpiMap and ABCmodel(Activity By Contact model)
 
 library(data.table)
 library(ggplot2)
@@ -9,12 +9,9 @@ library(ggpubr)
 
 
 
-##############SHARE-EPIMAP
-##read the merge file
+# Correlation between SHARE-seq and EPIMAP:
 final_result = fread("share_epimap_overlap_matched.out", header = F, sep = "\t")
-##reaneme col
 colnames(final_result) = c("chr", "start", "end", "gene", "cor", "tag", "chr1", "start1", "end1", "gene1", "score")
-##the nb of negative corr value
 final_result[cor > 0.5] 
 ##correlation test
 cor.test(final_result$cor, final_result$score, method ="spearman") 
