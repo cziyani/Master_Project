@@ -1,4 +1,4 @@
-# Script: Create a list of enhancers that are active simultaneously in the same gene(s) and cell(s) where the gene expressed.
+# Script to create a list of enhancers that are active simultaneously in the same gene(s) and cell(s) where the gene expressed.
 
 library(data.table)
 library(ggplot2)
