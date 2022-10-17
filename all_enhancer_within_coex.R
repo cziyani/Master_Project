@@ -1,6 +1,6 @@
-########## expore all enhancer within gene-enhancer associations list
-########## the produced file will be used while exploring and plotting 
-########## enhancers co-activity
+########## Explore all enhancer within gene-enhancer associations list
+########## The produced file will be used while exploring and plotting 
+########## Enhancers co-activity
 
 
 library(data.table)
