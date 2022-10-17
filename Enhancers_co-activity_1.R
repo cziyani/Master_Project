@@ -16,7 +16,7 @@ geneDT$cell = gsub(",P1.51","",as.character(geneDT$cell))
 ## Load and process Peaks data
 enhDT= fread("peak_mergenhancer_overlap_F_0.5_sorted.out", header = F, sep = "\t")
 colnames(enhDT) = c("chr", "start", "end", "cell")
-## Remove code identifiers from the cell ID coordiante
+## Remove code identifiers from the cell ID coordinate
 enhDT$cell = gsub(",P1.02","",as.character(enhDT$cell))
 enhDT$cell = gsub(",P1.03","",as.character(enhDT$cell))
 enhDT$chr= gsub( " ", "", enhDT$chr) 
@@ -45,10 +45,12 @@ geneDT = geneDT[cell %in% unique(enhDT$cell)]
 enhDT = enhDT[tag %in% unique(coexDT$tag)]
 enhDT = enhDT[cell %in% unique(geneDT$cell)]
 
+                   
 ## Merge data
 d1 = unique(merge(unique(coexDT), unique(geneDT), by = "gene", allow.cartesian = T))
 d2 = unique(merge(unique(coexDT), unique(enhDT), by = "tag", allow.cartesian = T))
 mergedData = merge(d1, d2, by = c("gene","tag","cell")) 
 
+                   
 # Save file
 write.table(mergedData,"gene_enhancer_cell.out",quote=F,sep="\t",col.names=T,row.names=F)
