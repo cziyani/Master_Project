@@ -1,4 +1,4 @@
-# Script to explore SHARE-seq coex and EpiMap datasets  
+# Script to explore SHARE-seq coex and EPIMAP datasets  
 
 library(data.table)
 library(ggplot2)
