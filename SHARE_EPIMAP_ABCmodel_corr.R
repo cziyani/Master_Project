@@ -13,9 +13,9 @@ library(ggpubr)
 final_result = fread("share_epimap_overlap_matched.out", header = F, sep = "\t")
 colnames(final_result) = c("chr", "start", "end", "gene", "cor", "tag", "chr1", "start1", "end1", "gene1", "score")
 final_result[cor > 0.5] 
-##correlation test
+## Correlation test:
 cor.test(final_result$cor, final_result$score, method ="spearman") 
-##plot x/y
+## Plot x/y:
 p1 = ggplot(final_result, aes(x=cor, y=score) ) +
   geom_bin2d() +
   geom_smooth(method = "lm")+
@@ -30,14 +30,12 @@ p1 = ggplot(final_result, aes(x=cor, y=score) ) +
 
 
 
-##############SHARE-ABCmodel
-##read the merge file
+# Correlation between SHARE-seq and ABCmodel:
 final_result = fread("share_abcmodel_overlap_matched.out", header = F, sep = "\t")
-##reaneme col
 colnames(final_result) = c("chr", "start", "end", "gene", "cor", "tag", "chr1", "start1", "end1", "gene1", "ABC.Score")
-##correlation test
+## Correlation test:
 cor.test(final_result$cor, final_result$ABC.Score, method ="spearman") ##0.04858158
-##plot x/y
+## Plot x/y:
 p2= ggplot(final_result, aes(as.numeric(cor), ABC.Score)) +
   geom_bin2d() +
   geom_smooth(method = "lm")+
@@ -52,16 +50,13 @@ p2= ggplot(final_result, aes(as.numeric(cor), ABC.Score)) +
 
 
 
-################ABCmodel-EPIMAP
-##read the merge file
+# Correlation between EPIMAP and ABCmodel:
 final_result = fread("epimap_abcmodel_overlap_matched.out", header = F, sep = "\t")
-##add a col which contain epimap-enh info
 final_result$tag = apply(final_result, 1, function(x) paste(x[6],x[7],x[8],x[9],sep = "_"))
-##reaneme col
 colnames(final_result) = c("chr", "start", "end", "gene", "score", "chr1", "start1", "end1", "gene1", "ABC.score", "tag1")
-##correlation test
+## Correlation test:
 cor.test(final_result$score, final_result$ABC.score, method ="spearman") ##0.01823965 
-##plot x/y
+## Plot x/y:
 p3 = ggplot(final_result, aes(score,ABC.score)) + 
   geom_bin2d() +
   geom_smooth(method = "lm")+
@@ -75,7 +70,7 @@ p3 = ggplot(final_result, aes(score,ABC.score)) +
         
   )
 
-
+## Arrange multiple plots on the same page
 ggarrange(p1,p2,p3, ncol = 3, nrow = 1)
 
 
