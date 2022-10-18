@@ -23,6 +23,8 @@ data$start2 = data.table(unlist(lapply(data$enh2, function(x) unlist(strsplit(x,
 data$end2 = data.table(unlist(lapply(data$enh2, function(x) unlist(strsplit(x,"[_]"))[3])))$V1
 distanceData =  data[,.(start1,end1, start2,end2, NBcell,count )]
 
+                                     
+                                     
 ## Calculate the midpoint between pairs of enhancers for Distnace calculation
 distanceData$mean1 = (as.numeric(distanceData$start1)+ as.numeric(distanceData$end1)) / 2
 distanceData$mean2 = (as.numeric(distanceData$start2)+ as.numeric(distanceData$end2)) / 2
@@ -32,6 +34,8 @@ dt2 = distanceData[, sum(NBcell), by=c("mean1", "mean2", "count")]
 ## Calculate the distance between pairs of enhnacers regulating the same gene
 dt2$distance = abs(as.numeric(dt2$mean2) - as.numeric(dt2$mean1))
 
+                                     
+                                     
 ## Box-plot
 dt2$bins<- cut(as.numeric(dt2$distance), breaks = c(0, 50000, 100000, 200000, 500000, 1000000, 1500000,2000000),
                labels = c("0-50KB", "50KB-100KB", "100KB-200KB", "200KB-500KB", "500KB-1000KB", "1000KB-1500KB", "1500KB-2000KB" ),
