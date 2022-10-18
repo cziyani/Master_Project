@@ -37,7 +37,7 @@ dt1 = dt1[NBenh > 1]
 summary(dt1)
 dt1= dt1[,-c(2,3,4,5,7,12)]
 colnames(coexDT) = c("gene", "chr", "start", "end")
-## Add the char "chr
+## Add the char "chr" and remove spaces
 dt1$chr = sub("^", "chr", dt1$chr)
 dt1$chr= gsub( " ", "", dt1$chr) 
 dt1$start= gsub( " ", "", dt1$start) 
