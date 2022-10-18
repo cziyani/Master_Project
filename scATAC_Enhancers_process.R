@@ -8,7 +8,6 @@ library(gridExtra)
 library(ggpubr)
  
 
-
 ## Load and process the data
 df = fread("peak_mergenhancer_overlap_F_0.5_sorted.out.gz", header = F, sep = "\t")
 ## Remove chr x and y
@@ -18,8 +17,7 @@ colnames(df) = c("chr", "start", "end", "cell","tag")
 enh_per_cell = data.table(table(df$cell)) 
 cell_per_enh = data.table(table(df$tag)) 
 
-               
-               
+                        
 ## Plot the number of enhancer(s) per cell
 P1 = ggplot(enh_per_cell , aes(x=N)) + 
   geom_histogram(binwidth = 50, color="black", fill="lightblue") + 
@@ -31,7 +29,6 @@ P1 = ggplot(enh_per_cell , aes(x=N)) +
   theme(plot.title=element_text( hjust=1, vjust=-17, size = 10, face = "bold")) 
 
 
-
 ## Plot the number of cell(s) per enhancer
 P2=ggplot(cell_per_enh , aes(x=N)) +
   geom_histogram(binwidth = 50, color="black", fill="orange", alpha = 0.4) +
@@ -41,7 +38,6 @@ P2=ggplot(cell_per_enh , aes(x=N)) +
            Median : 193
            Mean : 344") +
   theme(plot.title=element_text( hjust=1, vjust=-17, size = 10, face = "bold"))
-
 
 
 ## Arrange both plots on the same page
