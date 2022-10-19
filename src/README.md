@@ -1,5 +1,4 @@
-
-#This file provides scripts for data analysis and figure generation 
+This file provides scripts for data analysis and figure generation 
 
 ## Script
  - Shareseqcoex.py: Script to identify gene-enhancer associations.
